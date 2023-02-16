@@ -21,3 +21,7 @@ variable "bkname" {
   
   type=string
 }
+variable "keyName" {
+    type= string
+  
+}

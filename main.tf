@@ -95,7 +95,7 @@ resource "aws_instance" "Devops-Group" {
   #amazom linux machine
   ami           = var.ami[1]
   instance_type = var.instance
-  key_name = "i2bk"
+  key_name = var.keyName
   vpc_security_group_ids = [aws_security_group.myCICD-SG.id]
   subnet_id = aws_subnet.CICD_Pub_Sub_A.id
   associate_public_ip_address = true
