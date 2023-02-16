@@ -91,7 +91,7 @@ resource "aws_route_table_association" "name" {
   
 }
 #create an ec2 instance
-resource "aws_instance" "Devops-Group" {
+/*resource "aws_instance" "Devops-Group" {
   #amazom linux machine
   ami           = var.ami[1]
   instance_type = var.instance
@@ -103,4 +103,30 @@ resource "aws_instance" "Devops-Group" {
   tags={
     Name ="Devops-Group-"
   }
+} */
+# Launch template
+resource "aws_launch_template" "DeVops-G" {
+  name_prefix   = "Devops-G"
+  image_id      = var.ami[1]
+  instance_type = var.instance
+ user_data = filebase64("index.sh")
+ 
+
+}
+# Auto Scalling group 
+resource "aws_autoscaling_group" "Devops-G" {
+  availability_zones =["us-east-1a"]
+  desired_capacity   = 2
+  max_size           = 2
+  min_size           = 1
+  
+ 
+
+
+ launch_template {
+    id      = aws_launch_template.DeVops-G.id
+   version = "$Latest"
+   
+
+ }
 }
