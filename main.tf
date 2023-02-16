@@ -101,6 +101,6 @@ resource "aws_instance" "Devops-Group" {
   associate_public_ip_address = true
  user_data = file("./index.sh")
   tags={
-    Name ="Nexus"
+    Name ="Devops-Group-"
   }
 }
